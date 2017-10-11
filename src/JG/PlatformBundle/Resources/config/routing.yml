@@ -2,21 +2,49 @@ jg_platform_homepage:
     path:     /
     defaults: { _controller: JGPlatformBundle:Default:index }
 
+jg_platform_home:
+    path:    /{page}
+    defaults:
+        _controller: JGPlatformBundle:Formulaire:index
+        page:    1
+    requirements:
+        page: \d*
 
+jg_platform_home:
+    path:      /home
+    defaults: { _controller: JGPlatformBundle:Formulaire:index }
 
-#jg_platform_page_1:
-#    path:    /page-1
-#    defaults: { _controller: JGPlatformBundle:Formulaire:page1 }
-#
-#jg_platform_page_2:
-#    path:    /page-2
-#    defaults: { _controller: JGPlatformBundle:Formulaire:page2 }
+jg_platform_view:
+    path:      /view/{id}
+    defaults:
+       _controller: JGPlatformBundle:Formulaire:view
+    requirements:
+        id: \d+
 
+jg_platform_view_slug:
+    path:      /{year}/{slug}.{_format}
+    defaults:
+        _controller: JGPlatformBundle:Formulaire:viewSlug
+        format:    html
+    requirements:
+         year:    \d{4}
+         format: html|xml
 
-jg_platform_page_1:
-    path:    /platform/add
+jg_platform_add:
+    path:    /add
     defaults: { _controller: JGPlatformBundle:Formulaire:add }
 
-#jg_platform_page_2:
-#    path:    /page-2
-#    defaults: { _controller: JGPlatformBundle:Formulaire:page2 }
+
+jg_platform_edit:
+    path:    /edit/{id}
+    defaults:
+         _controller: JGPlatformBundle:Formulaire:edit
+    requirements:
+        id: \d+
+
+jg_platform_delete:
+    path:    /delete/{id}
+    defaults:
+        _controller: JGPlatformBundle:Formulaire:delete
+    requirements:
+        id: \d+
