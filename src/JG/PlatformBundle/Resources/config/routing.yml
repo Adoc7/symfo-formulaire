@@ -4,10 +4,19 @@ jg_platform_homepage:
 
 
 
-jg_platform_page_1:
-    path:    /page-1
-    defaults: { _controller: JGPlatformBundle:Formulaire:page1 }
+#jg_platform_page_1:
+#    path:    /page-1
+#    defaults: { _controller: JGPlatformBundle:Formulaire:page1 }
+#
+#jg_platform_page_2:
+#    path:    /page-2
+#    defaults: { _controller: JGPlatformBundle:Formulaire:page2 }
 
-jg_platform_page_2:
-    path:    /page-2
-    defaults: { _controller: JGPlatformBundle:Formulaire:page2 }
+
+jg_platform_page_1:
+    path:    /platform/add
+    defaults: { _controller: JGPlatformBundle:Formulaire:add }
+
+#jg_platform_page_2:
+#    path:    /page-2
+#    defaults: { _controller: JGPlatformBundle:Formulaire:page2 }

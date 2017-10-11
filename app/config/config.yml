@@ -38,6 +38,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -67,3 +68,5 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+

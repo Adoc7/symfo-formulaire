@@ -11,3 +11,4 @@ class DefaultController extends Controller
         return $this->render('JGPlatformBundle:Default:index.html.twig');
     }
 }
+
