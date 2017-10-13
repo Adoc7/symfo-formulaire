@@ -1,6 +1,6 @@
 jg_platform:
     resource: "@JGPlatformBundle/Resources/config/routing.yml"
-    prefix:   /platform
+#    prefix:   /platform
 
 app:
     resource: '@AppBundle/Controller/'

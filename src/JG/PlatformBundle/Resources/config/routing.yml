@@ -1,6 +1,6 @@
 jg_platform_homepage:
     path:     /
-    defaults: { _controller: JGPlatformBundle:Default:index }
+    defaults: { _controller: JGPlatformBundle:Formulaire:index }
 
 jg_platform_home:
     path:    /{page}
@@ -10,9 +10,6 @@ jg_platform_home:
     requirements:
         page: \d*
 
-jg_platform_home:
-    path:      /home
-    defaults: { _controller: JGPlatformBundle:Formulaire:index }
 
 jg_platform_view:
     path:      /view/{id}
