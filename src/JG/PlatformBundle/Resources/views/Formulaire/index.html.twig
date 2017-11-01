@@ -5,13 +5,14 @@
 {% block jgplatform_body %}
     <h2>Liste des annonces</h2>
     <ul>
-        {% for advert in listAdverts %}
+        {% for formulaire in formulaire %}
         <li>
-            <a href="{{ path('jg_platform_view', {'id': advert.id}) }}">
-                {{ advert.title }}
+            <a href="{{ path('jg_platform_view', {'id': formulaire.id}) }}">
+
+            {{ formulaire.title }}
             </a>
-            par {{ advert.author }},
-            le {{ advert.date|date('d/m/Y') }}
+            par {{ formulaire.author }},
+            le {{ formulaire.date|date('d/m/Y') }}
         </li>
         {% else %}
         <li>Pas (encore !) d'annonces</li>

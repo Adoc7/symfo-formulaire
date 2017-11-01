@@ -1,4 +1,8 @@
 services:
-#    jg_platform.example:
-#        class: JG\PlatformBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+##    jg_platform.example:
+##        class: JG\PlatformBundle\Example
+##        arguments: ["@service_id", "plain_value", "%parameter%"]
+#
+        jg_platform.antispam:
+            class:  JG\PlatformBundle\Antispam\JGAntispam
+            arguments: ["@mailer", "%locale%", 50]

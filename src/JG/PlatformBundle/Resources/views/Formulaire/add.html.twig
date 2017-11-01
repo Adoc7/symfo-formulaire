@@ -1,24 +1,3 @@
-{#<h3>Formulaire d'annonce</h3>#}
-
-{#<div class="well">#}
-    {#{{ form(form) }}#}
-{#</div>#}
-
-
-{#{% extends "JGPlatformBundle::layout.html.twig" %}#}
-{#{% block body %}#}
-
-{#<h2> Ajouter une annonce</h2>#}
-
-{#{{ include("JGPlatformBundle:Formulaire:form.html.twig") }}#}
-
-{#<p>#}
-    {#Attention : cette annonce sera ajoutée directement#}
-    {#sur la page d'accueil après validation du formulaire.#}
-{#</p>#}
-
-{#{% endblock %}#}
-
 
 {% extends "JGPlatformBundle::layout.html.twig" %}
 
@@ -39,10 +18,5 @@ Ajouter une annonce - {{ parent() }}
         Attention : cette annonce sera ajoutée directement
         sur la page d'accueil après validation du formulaire.
 
-        {#<a href="{{ path('jg_platform_view', {'id': advert.id}) }}" class="btn btn-default">#}
-            {#<i class="glyphicon glyphicon-chevron-left"></i>#}
-            {#Retour à l'annonce#}
-
-        {#</a>#}
     </p>
 {% endblock %}
