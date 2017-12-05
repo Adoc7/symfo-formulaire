@@ -5,41 +5,29 @@ namespace JG\PlatformBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 
+
 /**
  * @ORM\Table(name="jg_application")
  * @ORM\Entity(repositoryClass="JG\PlatformBundle\Repository\ApplicationRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-
-
 class Application
 {
-
-    /**
-     * @ORM\ManyToOne(targetEntity="JG\PlatformBundle\Entity\Formulaire")
-     * @ORM\JoinColumn(nullable=false)
-     */
-
-    private $formulaire;
-
-    // reste des attributs
-
-    public function setFormulaire(Formulaire $formulaire)
-    {
-        $this->formulaire = $formulaire;
-        return $this;
-    }
-
-    public function getFormulaire()
-    {
-        return $this->formulaire;
-    }
-
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="JG\PlatformBundle\Entity\Formulaire", inversedBy="applications")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $formulaire;
+
+
 
     /**
      * @ORM\Column(name="author", type="string", length=255)
@@ -57,15 +45,54 @@ class Application
     private $date;
 
 
+    public function __construct()
+    {
+        $this->date = new \Datetime();
+    }
+
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function increase()
+    {
+        $this->getFormulaire()->increaseApplication();
+
+    }
+
+    /**
+     * @ORM\PreRemove
+     */
+    public function decrease()
+    {
+        $this->getFormulaire()->decreaseApplication();
+    }
+
+
+
+
+    // reste des attributs
+
+    public function setFormulaire(Formulaire $formulaire)
+    {
+        $this->formulaire = $formulaire;
+        return $this;
+    }
+
+    public function getFormulaire()
+    {
+        return $this->formulaire;
+    }
+
+
+
+
     public function getId()
     {
         return $this->id;
     }
 
-    public function __construct()
-    {
-        $this->date = new \Datetime();
-    }
+
 
     public function setAuthor($author)
     {
@@ -84,8 +111,37 @@ class Application
         return $this;
     }
 
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
 
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Application
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
 }
-
-
-

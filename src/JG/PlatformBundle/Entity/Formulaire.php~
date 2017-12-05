@@ -2,20 +2,146 @@
 
 namespace JG\PlatformBundle\Entity;
 
+
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+
+
 
 /**
  * Formulaire
- *
  * @ORM\Table(name="formulaire")
  * @ORM\Entity(repositoryClass="JG\PlatformBundle\Repository\FormulaireRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Formulaire
 {
+    /**
+     * @ORM\Column(name="nb_applications", type="integer")
+     */
+    private $nbApplications = 0;
+
+    public function increaseApplication()
+    {
+        $this->nbApplications++;
+    }
+
+    public function descreaseApplication()
+    {
+        $this->nbApplications--;
+    }
+
+
+
+
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+
+    private $updatedAt;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="JG\PlatformBundle\Entity\Application", mappedBy="formulaire")
+     */
+
+    private $applications; // Notez le « s », une annonce est liée à plusieurs candidatures
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="JG\PlatformBundle\Entity\Category", cascade={"persist"})
+     */
+//    /**
+//     * @ORM
+//     */
+    private $categories;
+
+    // ... autres attributs
+
+    // Comme la propriété $categories doit être un ArrayCollection,
+    // On doit la définir dans un constructeur :
+
     public function __construct()
     {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->date = new \Datetime();
+        $this->categories = new ArrayCollection();
+        $this->applications = new ArrayCollection();
+    }
+    /**
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+
+    {
+       $this->setUpdatedAt(new \Datetime());
+    }
+
+
+    public function addApplication(Application $application)
+    {
+        $this->applications[] = $application;
+
+
+        // On lie l'annonce à la candidature
+        $application->setFormulaire($this);
+
+        return $this;
+    }
+
+    public function removeApplication(Application $application)
+    {
+        $this->applications->removeElement($application);
+    }
+
+    public function getApplications()
+    {
+        return $this->applications;
+    }
+
+
+    // Au singulier. On ajoute une seule catégorie à la fois.
+    public function addCategory(Category $category)
+    {
+        //ON UTILISE ArrayCollection vraiment comme un tableau
+        $this->categories[] = $category;
+        return $this;
+    }
+
+    public function removeCategory(Category $category)
+    {
+        // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+        $this->categories->removeElement($category);
+    }
+
+        // Notez le pluriel, on récupère une liste de catégories ici !
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    // autres getters et setters
+
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="JG\PlatformBundle\Entity\Image", cascade={"persist"})
+     */
+
+    private $image;
+
+    // Vos autres attributs…
+
+    public function setImage(Image $image = null)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -190,4 +316,5 @@ class Formulaire
     {
         return $this->published;
     }
+
 }

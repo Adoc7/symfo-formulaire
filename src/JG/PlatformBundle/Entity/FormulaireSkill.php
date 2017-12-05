@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="jg_formulaire_skill")
  */
 
 class FormulaireSkill
@@ -34,6 +35,9 @@ class FormulaireSkill
      * @ORM\JoinColumn(nullable=false)
      */
     private $skill;
+
+
+
 
     public function getId()
     {

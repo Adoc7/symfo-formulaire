@@ -1,18 +1,23 @@
 <?php
 namespace JG\PlatformBundle\Repository;
 use Doctrine\ORM\EntityRepository;
+
+
 class ApplicationRepository extends EntityRepository
 {
-    public function getApplicationsWithAdvert($limit)
+    public function getApplicationsWithFormulaire($limit)
     {
         $qb = $this->createQueryBuilder('a');
-        // On fait une jointure avec l'entité Advert avec pour alias « adv »
+
+        // On fait une jointure avec l'entité Formulaire avec pour alias "adv"
         $qb
-            ->innerJoin('a.advert', 'adv')
-            ->addSelect('adv')
+            ->innerJoin('a.formulaire','adv')
+            ->addSelect('adv');
         ;
-        // Puis on ne retourne que $limit résultats
+
+        // Puis on me retourn que $limit résultats
         $qb->setMaxResults($limit);
+
         // Enfin, on retourne le résultat
         return $qb
             ->getQuery()

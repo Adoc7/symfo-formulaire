@@ -3,9 +3,9 @@
 namespace JG\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * @ORM\Entity
+ * @ORM\Table(name="jg_skill")
  */
 class Skill
 {
@@ -15,26 +15,29 @@ class Skill
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
-
+    /**
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;
-        return $this;
     }
-
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
-
 }

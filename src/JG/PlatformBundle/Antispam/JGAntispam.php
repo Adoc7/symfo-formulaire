@@ -14,13 +14,13 @@ Class JGAntispam
         $this->locale    = $locale;
         $this->minLength = (int) $minLength;
     }
-//    /**
-//     * Vérifie si le texte est un spam ou non
-//     *
-//     * @param string $text
-//     * @return bool
-//     */
-//
+    /**
+     * Vérifie si le texte est un spam ou non
+     *
+     * @param string $text
+     * @return bool
+     */
+
     public function isSpam($text)
 
     {

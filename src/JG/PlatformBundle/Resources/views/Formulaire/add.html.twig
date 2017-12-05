@@ -1,22 +1,16 @@
-
 {% extends "JGPlatformBundle::layout.html.twig" %}
 
 {% block body %}
-Ajouter une annonce - {{ parent() }}
-{#{% enblock %}#}
-
-{#{% block jgplatform_body %}#}
 
     <h2>Ajouter une annonce</h2>
-    {{ include('JGPlatformBundle:Formulaire:form.html.twig') }}
-
-    <p>
-        Vous ajoutez une annonce
-    </p>
-
+    {{ include("JGPlatformBundle:Formulaire:form.html.twig") }}
     <p>
         Attention : cette annonce sera ajoutée directement
         sur la page d'accueil après validation du formulaire.
-
     </p>
+
 {% endblock %}
+
+
+
+

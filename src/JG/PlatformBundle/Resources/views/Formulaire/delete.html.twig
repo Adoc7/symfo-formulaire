@@ -1,0 +1,27 @@
+{% extends "JGPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Supprimer une annonce - {{ parent() }}
+{% endblock %}
+
+{% block jgplatform_body %}
+
+    <h2>Supprimer une annonce</h2>
+
+    <p>
+        Etes-vous certain de vouloir supprimer l'annonce "{{ formulaire.title }}" ?
+    </p>
+
+    {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+    <form action="{{ path('jg_platform_delete', {'id': formulaire.id}) }}" method="post">
+        <a href="{{ path('jg_platform_view', {'id': formulaire.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'annonce
+        </a>
+        {# Ici j'ai écrit le bouton de soumission à la main #}
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        {# Ceci va générer le champ CSRF #}
+        {{ form_rest(form) }}
+    </form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+
+jg_core_home:
+    path: /
+    defaults:
+        _controller: JGCoreBundle:Core:index
+
+jg_core_contact:
+    path: /contact
+    defaults:
+        _controller: JGCoreBundle:Core:contact
+

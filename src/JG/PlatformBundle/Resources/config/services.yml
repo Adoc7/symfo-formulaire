@@ -1,8 +1,30 @@
 services:
-##    jg_platform.example:
-##        class: JG\PlatformBundle\Example
-##        arguments: ["@service_id", "plain_value", "%parameter%"]
-#
-        jg_platform.antispam:
-            class:  JG\PlatformBundle\Antispam\JGAntispam
-            arguments: ["@mailer", "%locale%", 50]
+  jg_platform.antispam:
+      class: JG\PlatformBundle\Antispam\JGAntispam
+      arguments:
+          - "@mailer"
+          - %locale%
+          - 50
+
+  jg_platform.email.application_mailer:
+      class: JG\PlatformBundle\Email\ApplicationMailer
+      arguments:
+          - "@mailer"
+
+  jg_platform.doctrine_listener.application_creation:
+    class: JG\PlatformBundle\DoctrineListener\ApplicationCreationListener
+    arguments:
+      - "@jg_platform.email.application_mailer"
+    tags:
+      - { name: doctrine.event_listener, event: postPersist }
+
+  jg_platform.purger.advert:
+    class: JG\PlatformBundle\Purger\FormulairePurger
+    arguments:
+       - "@doctrine.orm.entity_manager"
+
+  jg_platform.validator.antiflood:                                # Le nom du service
+    class: JG\PlatformBundle\Validator\AntifloodValidator         # La classe du service, ici notre validateur déjà créé
+    arguments: ["@request_stack", "@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
+    tags:
+        - { name: validator.constraint_validator, alias: jg_platform_antiflood } # C'est avec l'alias qu'on retrouvera le service

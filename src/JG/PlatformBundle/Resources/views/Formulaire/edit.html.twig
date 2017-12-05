@@ -1,23 +1,25 @@
 {% extends "JGPlatformBundle::layout.html.twig" %}
 
 {% block title %}
-        Modifier une annonce - {{ parent() }}
+    Modifier une annonce - {{ parent() }}
 {% endblock %}
 
 {% block jgplatform_body %}
 
-<h2>Modifier une annonce</h2>
-{{ include('JGPlatformBundle:Formulaire:form.html.twig') }}
+    <h2>Modifier une annonce</h2>
 
-<p>
-    Vous éditez une annonce déjà existante, merci de ne pas changer
-    l'esprit général de l'annonce déjà publiée.
-</p>
+    {{ include("JGPlatformBundle:Formulaire:form.html.twig") }}
 
-<p>
-    <a href="{{ path('jg_platform_view', {'id': formulaire.id}) }}" class="btn btn-default">
-        <i class="glyphicon glyphicon-chevron-left"></i>
-        Retour à l'annonce
-    </a>
-</p>
+    <p>
+        Vous éditez une annonce déjà existante, merci de ne pas changer
+        l'esprit générale de l'annonce déjà publiée.
+    </p>
+
+    <p>
+        <a href="{{ path('jg_platform_view', {'id': formulaire.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'annonce
+        </a>
+    </p>
+
 {% endblock %}

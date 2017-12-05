@@ -1,10 +1,11 @@
 jg_platform:
     resource: "@JGPlatformBundle/Resources/config/routing.yml"
-#    prefix:   /platform
+    prefix:   /platform
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+
+# On inclut également les routes de notre CoreBundle, sans préfixe
+jg_core:
+    resource: "@JGCoreBundle/Resources/config/routing.yml"
 
 
 
