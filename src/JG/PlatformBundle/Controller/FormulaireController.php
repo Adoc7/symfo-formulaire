@@ -8,12 +8,16 @@ use JG\PlatformBundle\Form\FormulaireEditType;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request; // N'oubliez pas ce use !
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class FormulaireController extends Controller
 {
+
     public function indexAction($page)
     {
         if ($page < 1) {
